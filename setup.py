@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """Setuptools configuration."""
 
+from os.path import abspath, dirname, join, normpath
+
 from setuptools import setup, find_packages
 
 setup(
     name='scan_merge',
     version='1.0',
     description='Tool to merge ',
+    long_description=open(
+        normpath(join(dirname(abspath(__file__)), 'README.md'))).read(),
+    long_description_content_type="text/markdown",
     author='Arvid Norlander',
     author_email='VorpalBlade@users.noreply.github.com',
     url='https://github.com/VorpalBlade/scan_merge',
