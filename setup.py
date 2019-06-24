@@ -7,8 +7,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='scan_merge',
-    version='1.0',
-    description='Tool to merge ',
+    version='1.0.1',
+    description='Tool to merge scanned PDFs from single sided document feeders',
     long_description=open(
         normpath(join(dirname(abspath(__file__)), 'README.md'))).read(),
     long_description_content_type="text/markdown",
