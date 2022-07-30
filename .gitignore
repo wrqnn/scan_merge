@@ -1,6 +1,7 @@
+__pycache__
+*.code-workspace
 *\.egg-info/
 /.idea/
 /build/
 /dist/
 /venv/
-__pycache__
