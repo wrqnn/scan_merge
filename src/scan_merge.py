@@ -35,6 +35,8 @@ def main():
     parser.add_argument(
         "output_file", type=Path, help="Path of combined output file"
     ).completer = pdf_completer
+    parser.add_argument('--reverse', help="Reverses the page order of PDF with backs of pages (10,8,6,...)", action=argparse.BooleanOptionalAction, dest='reverse_back_file')
+    parser.set_defaults(reverse_back_file=False)
     argcomplete.autocomplete(parser)
     args = parser.parse_args()
 
@@ -46,9 +48,15 @@ def main():
         input_front = PdfFileReader(front_file)
         input_back = PdfFileReader(back_file)
         # Generate combined sequence of pages from both PDFs
-        combined = filter(
-            bool, interleave_longest(input_front.pages, reversed(input_back.pages))
-        )
+        combined = None
+        if(args.reverse_back_file):
+            combined = filter(
+                bool, interleave_longest(input_front.pages, reversed(input_back.pages))
+            )
+        else:
+            combined = filter(
+                bool, interleave_longest(input_front.pages, input_back.pages)
+            )
         for page in combined:
             output.addPage(page)
         with args.output_file.open(mode="wb") as output_file:
